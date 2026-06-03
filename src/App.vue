@@ -1,7 +1,7 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import TokensCalculator from './components/TokensCalculator.vue';
 </script>
 
 <template>
-  <HelloWorld />
+  <TokensCalculator />
 </template>
