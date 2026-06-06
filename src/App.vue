@@ -21,17 +21,20 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <RouterLink
-              to="/tokens-calculator"
-              class="nav-link active"
-              aria-current="page"
-              >Tokens Calculator</RouterLink
+            <RouterLink to="/" class="nav-link active" aria-current="page"
+              >Inicio</RouterLink
+            >
+          </li>
+          <li class="nav-item">
+            <RouterLink to="/tokens-calculator" class="nav-link"
+              >Calculadora de Tokens</RouterLink
             >
           </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <div class="container">
     <router-view />
   </div>
