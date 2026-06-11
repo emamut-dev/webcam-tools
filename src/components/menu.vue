@@ -1,4 +1,13 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue';
+
+const menuItems = ref([
+  { label: 'Inicio', path: '/' },
+  { label: 'Calculadora de Tokens', path: '/tokens-calculator' },
+  { label: 'Tags', path: '/tags' },
+]);
+</script>
+
 <template>
   <nav
     class="navbar navbar-expand-lg nav-underline bg-dark border-bottom border-body"
@@ -19,21 +28,12 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
+          <li class="nav-item" v-for="item in menuItems" :key="item.path">
             <RouterLink
-              to="/"
+              :to="item.path"
               class="nav-link"
               active-class="active"
-              exact-active-class="active"
-              >Inicio</RouterLink
-            >
-          </li>
-          <li class="nav-item">
-            <RouterLink
-              to="/tokens-calculator"
-              class="nav-link"
-              active-class="active"
-              >Calculadora de Tokens</RouterLink
+              >{{ item.label }}</RouterLink
             >
           </li>
         </ul>
