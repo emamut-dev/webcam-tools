@@ -14,7 +14,9 @@ const menuItems = ref([
     data-bs-theme="dark"
   >
     <div class="container-fluid">
-      <RouterLink class="navbar-brand" to="/">Webcam Tools</RouterLink>
+      <RouterLink class="navbar-brand text-warning fw-bold" to="/"
+        >Webcam Tools</RouterLink
+      >
       <button
         class="navbar-toggler"
         type="button"
