@@ -10,7 +10,7 @@ const menuItems = ref([
 
 <template>
   <nav
-    class="navbar navbar-expand-lg nav-underline bg-dark border-bottom border-body"
+    class="navbar navbar-expand-lg nav-underline bg-dark sticky-top border-bottom border-body"
     data-bs-theme="dark"
   >
     <div class="container-fluid">

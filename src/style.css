@@ -17,3 +17,7 @@
 .nav-underline .nav-link.active {
   border-bottom-color: var(--bs-warning);
 }
+
+#logo-emamut {
+  width: 5rem;
+}
