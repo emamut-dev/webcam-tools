@@ -3,7 +3,8 @@
     <div class="row justify-content-between">
       <div class="col">
         <p class="text-white-50 mt-5 mb-3">
-          Derechos reservados <i class="bi bi-c-circle text-warning"></i> 2026
+          Derechos reservados <i class="bi bi-c-circle text-warning"></i>
+          {{ year }}
           Webcam Tools.
         </p>
       </div>
@@ -25,3 +26,7 @@
     </div>
   </footer>
 </template>
+
+<script setup>
+const year = new Date().getFullYear();
+</script>

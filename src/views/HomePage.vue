@@ -2,9 +2,9 @@
 
 <template>
   <div class="container">
-    <div class="row mt-3">
+    <div class="row mt-5">
       <div class="col text-center">
-        <h1>Home Page</h1>
+        <p class="lead">Tus herramientas webcam favoritas</p>
       </div>
     </div>
   </div>
