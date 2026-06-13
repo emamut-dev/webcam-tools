@@ -5,13 +5,24 @@ import Tags from '@/views/Tags.vue';
 import Timer from '@/views/Timer.vue';
 
 const routes = [
-  { path: '/', component: HomePage },
-  { path: '/timer', component: Timer },
-  { path: '/tokens-calculator', component: TokensCalculator },
-  { path: '/tags', component: Tags },
+  { path: '/', component: HomePage, meta: { title: 'Inicio' } },
+  { path: '/timer', component: Timer, meta: { title: 'Cuenta Regresiva' } },
+  {
+    path: '/tokens-calculator',
+    component: TokensCalculator,
+    meta: { title: 'Calculadora de Tokens' },
+  },
+  { path: '/tags', component: Tags, meta: { title: 'Tags' } },
 ];
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.afterEach((to) => {
+  const title = to.meta.title || 'Webcam Tools';
+  document.title = `${title} { Webcam Tools } | emamut`;
+});
+
+export default router;
