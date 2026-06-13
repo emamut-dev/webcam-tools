@@ -3,13 +3,11 @@
     <div class="row justify-content-center mb-4">
       <div class="col-md-8 text-center">
         <h1 class="fw-bold">
-          <i class="bi bi-stopwatch"></i> Cuenta Rregresiva
+          <i class="bi bi-stopwatch"></i> Cuenta Regresiva
         </h1>
         <p class="text-white-50 mb-0">
-          Deserunt reprehenderit irure consequat esse qui eu. Consectetur dolore
-          sunt ipsum velit. Exercitation cillum tempor enim non culpa magna
-          ullamco consequat id occaecat deserunt excepteur sint id. Dolore elit
-          sit ea fugiat.
+          Configura una cuenta regresiva para cada room y administra tus tiempos
+          de descanso según tus necesidades.
         </p>
       </div>
     </div>
