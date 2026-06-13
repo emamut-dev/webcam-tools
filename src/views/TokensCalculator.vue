@@ -132,7 +132,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
+
+const STORAGE_KEY = 'tokens-calculator-data';
 
 const tokenValue = ref(0.05);
 const modelTokens = ref(100);
@@ -143,7 +145,42 @@ const studioValue = ref(0);
 const resultado = ref(null);
 const loadingRate = ref(false);
 
+const loadStoredData = () => {
+  try {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (!stored) return;
+    const saved = JSON.parse(stored);
+    if (typeof saved.modelTokens === 'number')
+      modelTokens.value = saved.modelTokens;
+    if (typeof saved.percentage === 'number')
+      percentage.value = saved.percentage;
+    if (typeof saved.tokenValue === 'number')
+      tokenValue.value = saved.tokenValue;
+    if (typeof saved.dollarValue === 'number')
+      dollarValue.value = saved.dollarValue;
+  } catch (error) {
+    console.error('Error loading stored data:', error);
+  }
+};
+
+const saveStoredData = () => {
+  try {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        modelTokens: modelTokens.value,
+        percentage: percentage.value,
+        tokenValue: tokenValue.value,
+        dollarValue: dollarValue.value,
+      }),
+    );
+  } catch (error) {
+    console.error('Error saving stored data:', error);
+  }
+};
+
 onMounted(async () => {
+  loadStoredData();
   loadingRate.value = true;
   try {
     const response = await fetch('https://co.dolarapi.com/v1/cotizaciones/usd');
@@ -154,6 +191,11 @@ onMounted(async () => {
   } finally {
     loadingRate.value = false;
   }
+});
+
+watch([modelTokens, percentage, tokenValue, dollarValue], () => {
+  saveStoredData();
+  calcular();
 });
 
 const parseUSD = (num) => '$' + Number(num).toLocaleString('es-CO');
