@@ -1,11 +1,11 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-4">
     <div class="row justify-content-center mb-4">
       <div class="col-md-8 text-center">
         <h1 class="fw-bold">
           <i class="bi bi-stopwatch"></i> Cuenta Rregresiva
         </h1>
-        <p class="text-white mb-0">
+        <p class="text-white-50 mb-0">
           Deserunt reprehenderit irure consequat esse qui eu. Consectetur dolore
           sunt ipsum velit. Exercitation cillum tempor enim non culpa magna
           ullamco consequat id occaecat deserunt excepteur sint id. Dolore elit
