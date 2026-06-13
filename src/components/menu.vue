@@ -3,9 +3,15 @@ import { ref } from 'vue';
 
 const menuItems = ref([
   { label: 'Inicio', path: '/' },
-  { label: 'Timer', path: '/timer' },
-  { label: 'Tags', path: '/tags' },
-  { label: 'Calculadora de Tokens', path: '/tokens-calculator' },
+  {
+    label: '<i class="bi bi-stopwatch"></i> Cuenta Rregresiva',
+    path: '/timer',
+  },
+  // { label: 'Tags', path: '/tags' },
+  {
+    label: '<i class="bi bi-calculator"></i> Calculadora de Tokens',
+    path: '/tokens-calculator',
+  },
 ]);
 </script>
 
@@ -36,8 +42,9 @@ const menuItems = ref([
               :to="item.path"
               class="nav-link"
               active-class="active"
-              >{{ item.label }}</RouterLink
+              v-html="item.label"
             >
+            </RouterLink>
           </li>
         </ul>
       </div>

@@ -1,7 +1,9 @@
 <template>
   <div class="row justify-content-center mt-4">
     <div class="col-md-8">
-      <h1 class="text-center fw-bold">Calcula el valor de tus Tokens</h1>
+      <h1 class="text-center fw-bold">
+        <i class="bi bi-calculator"></i> Calculadora de Tokens
+      </h1>
       <p class="text-center text-white-50">
         Ingresa los datos y obtén el desglose de ganancias para modelo y estudio
         de manera instantánea.

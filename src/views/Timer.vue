@@ -2,7 +2,9 @@
   <div class="container mt-5">
     <div class="row justify-content-center mb-4">
       <div class="col-md-8 text-center">
-        <h1 class="fw-bold">Timer por Rooms</h1>
+        <h1 class="fw-bold">
+          <i class="bi bi-stopwatch"></i> Cuenta Rregresiva
+        </h1>
         <p class="text-white mb-0">
           Deserunt reprehenderit irure consequat esse qui eu. Consectetur dolore
           sunt ipsum velit. Exercitation cillum tempor enim non culpa magna
