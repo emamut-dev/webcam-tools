@@ -1,18 +1,38 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '@/views/HomePage.vue';
-import TokensCalculator from '@/views/TokensCalculator.vue';
-import Tags from '@/views/Tags.vue';
-import Timer from '@/views/Timer.vue';
+import TokensCalculator from '@/views/TokensCalculatorPage.vue';
+import Tags from '@/views/TagsPage.vue';
+import Timer from '@/views/TimerPage.vue';
 
 const routes = [
   { path: '/', component: HomePage, meta: { title: 'Inicio' } },
-  { path: '/timer', component: Timer, meta: { title: 'Cuenta Regresiva' } },
+  {
+    path: '/timer',
+    component: Timer,
+    meta: {
+      title: 'Cuenta Regresiva',
+      description: 'Configura temporizadores personalizados',
+      icon: 'bi bi-stopwatch',
+    },
+  },
   {
     path: '/tokens-calculator',
     component: TokensCalculator,
-    meta: { title: 'Calculadora de Tokens' },
+    meta: {
+      title: 'Calculadora de Tokens',
+      description: 'Calcula y estima tokens de texto',
+      icon: 'bi bi-calculator',
+    },
+    // },
+    // {
+    //   path: '/tags',
+    //   component: Tags,
+    //   meta: {
+    //     title: 'Tags',
+    //     description: 'Administra tus etiquetas personalizadas',
+    //     icon: 'bi bi-tag',
+    //   },
   },
-  { path: '/tags', component: Tags, meta: { title: 'Tags' } },
 ];
 
 const router = createRouter({
