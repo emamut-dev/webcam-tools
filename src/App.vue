@@ -5,8 +5,14 @@ import Footer from '@/components/footer.vue';
 
 <template>
   <Menu />
-  <div class="container min-vh-100">
+  <div class="container" id="main-container">
     <router-view />
   </div>
   <Footer />
 </template>
+
+<style>
+#main-container {
+  min-height: 75vh;
+}
+</style>
