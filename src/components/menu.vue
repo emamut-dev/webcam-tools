@@ -3,8 +3,9 @@ import { ref } from 'vue';
 
 const menuItems = ref([
   { label: 'Inicio', path: '/' },
-  { label: 'Calculadora de Tokens', path: '/tokens-calculator' },
+  { label: 'Timer', path: '/timer' },
   { label: 'Tags', path: '/tags' },
+  { label: 'Calculadora de Tokens', path: '/tokens-calculator' },
 ]);
 </script>
 

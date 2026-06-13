@@ -1,37 +1,3 @@
-<script setup>
-import { ref, onMounted } from 'vue';
-
-const tokenValue = ref(0.05);
-const modelTokens = ref(100);
-const percentage = ref(60);
-const dollarValue = ref(3600);
-const totalValue = ref(0);
-const studioValue = ref(0);
-const resultado = ref(null);
-const loadingRate = ref(false);
-
-onMounted(async () => {
-  loadingRate.value = true;
-  try {
-    const response = await fetch('https://co.dolarapi.com/v1/cotizaciones/usd');
-    const data = await response.json();
-    dollarValue.value = data.venta;
-  } catch (error) {
-    console.error('Error fetching dollar value:', error);
-  } finally {
-    loadingRate.value = false;
-  }
-});
-
-const parseUSD = (num) => '$' + Number(num).toLocaleString('es-CO');
-
-const calcular = () => {
-  totalValue.value = modelTokens.value * tokenValue.value * dollarValue.value;
-  studioValue.value = (totalValue.value * (100 - percentage.value)) / 100;
-  return parseUSD(totalValue.value * (percentage.value / 100));
-};
-</script>
-
 <template>
   <div class="row justify-content-center mt-4">
     <div class="col-md-8">
@@ -164,3 +130,37 @@ const calcular = () => {
     </div>
   </div>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+
+const tokenValue = ref(0.05);
+const modelTokens = ref(100);
+const percentage = ref(60);
+const dollarValue = ref(3600);
+const totalValue = ref(0);
+const studioValue = ref(0);
+const resultado = ref(null);
+const loadingRate = ref(false);
+
+onMounted(async () => {
+  loadingRate.value = true;
+  try {
+    const response = await fetch('https://co.dolarapi.com/v1/cotizaciones/usd');
+    const data = await response.json();
+    dollarValue.value = data.venta;
+  } catch (error) {
+    console.error('Error fetching dollar value:', error);
+  } finally {
+    loadingRate.value = false;
+  }
+});
+
+const parseUSD = (num) => '$' + Number(num).toLocaleString('es-CO');
+
+const calcular = () => {
+  totalValue.value = modelTokens.value * tokenValue.value * dollarValue.value;
+  studioValue.value = (totalValue.value * (100 - percentage.value)) / 100;
+  return parseUSD(totalValue.value * (percentage.value / 100));
+};
+</script>
