@@ -147,6 +147,39 @@ const clearRoomInterval = (room) => {
   }
 };
 
+const audioCtx = ref(null);
+const getAudioCtx = () => {
+  if (audioCtx.value) return audioCtx.value;
+  const C = window.AudioContext || window.webkitAudioContext;
+  if (!C) return null;
+  audioCtx.value = new C();
+  return audioCtx.value;
+};
+
+const playBeep = (frequency = 880, duration = 0.25, volume = 0.2) => {
+  const ctx = getAudioCtx();
+  if (!ctx) return;
+  try {
+    if (ctx.state === 'suspended') {
+      ctx.resume().catch(() => {});
+    }
+    const o = ctx.createOscillator();
+    const g = ctx.createGain();
+    o.type = 'sine';
+    o.frequency.value = frequency;
+    g.gain.value = volume;
+    o.connect(g);
+    g.connect(ctx.destination);
+    const now = ctx.currentTime;
+    o.start(now);
+    g.gain.setValueAtTime(volume, now);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + duration);
+    o.stop(now + duration + 0.05);
+  } catch (e) {
+    // ignore audio errors
+  }
+};
+
 const stopRoom = (room) => {
   clearRoomInterval(room);
   room.running = false;
@@ -156,12 +189,20 @@ const stopRoom = (room) => {
 const tickRoom = (room) => {
   if (room.remaining <= 0) {
     stopRoom(room);
+    if (!room._notified) {
+      playBeep();
+      room._notified = true;
+    }
     return;
   }
 
   room.remaining = Math.max(0, room.remaining - 1);
   if (room.remaining === 0) {
     stopRoom(room);
+    if (!room._notified) {
+      playBeep();
+      room._notified = true;
+    }
   }
 };
 
@@ -179,6 +220,7 @@ const resetRoom = (room) => {
   stopRoom(room);
   room.remaining = props.durationSeconds;
   room.status = 'Detenido';
+  room._notified = false;
 };
 
 const startAll = () => {
@@ -201,6 +243,7 @@ const initializeRooms = () => {
 
   roomStates.value = props.rooms.map((name, index) => {
     const state = createRoomState(name, index);
+    state._notified = state.remaining === 0;
     if (storedProgress) {
       const matchByName = storedProgress.find((p) => p.name === name);
       const match = matchByName || storedProgress[index];
