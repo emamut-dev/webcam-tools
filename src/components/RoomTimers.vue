@@ -35,9 +35,17 @@
                   Duración inicial: {{ formatTime(initialDuration) }}
                 </p>
               </div>
-              <span class="badge bg-primary align-self-start">{{
-                room.status
-              }}</span>
+              <span
+                class="badge align-self-start"
+                :class="
+                  room.status === 'Activo'
+                    ? 'bg-success'
+                    : room.status === 'Detenido'
+                      ? 'bg-danger'
+                      : 'bg-secondary'
+                "
+                >{{ room.status }}</span
+              >
             </div>
 
             <div class="text-center mb-3">
