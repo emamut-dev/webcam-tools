@@ -80,13 +80,46 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted, watch } from 'vue';
 import RoomTimers from '@/components/RoomTimers.vue';
 
 const durationMinutes = ref(20);
 const rooms = ref(['Room 1', 'Room 2', 'Room 3']);
 
 const durationSeconds = computed(() => Math.max(1, durationMinutes.value) * 60);
+
+const STORAGE_KEY = 'webcam-tools.timerConfig';
+
+onMounted(() => {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw);
+      if (typeof parsed.durationMinutes === 'number') {
+        durationMinutes.value = parsed.durationMinutes;
+      }
+      if (Array.isArray(parsed.rooms)) {
+        rooms.value = parsed.rooms;
+      }
+    } catch (e) {
+      // ignore parse errors
+    }
+  }
+});
+
+const saveToStorage = () => {
+  const payload = {
+    durationMinutes: durationMinutes.value,
+    rooms: rooms.value,
+  };
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  } catch (e) {
+    // ignore quota errors
+  }
+};
+
+watch([rooms, durationMinutes], saveToStorage, { deep: true });
 
 const addRoom = () => {
   const nextIndex = rooms.value.length + 1;
