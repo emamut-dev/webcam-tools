@@ -10,7 +10,7 @@ const routes = router
 <template>
   <div class="container">
     <div class="row justify-content-center mt-4">
-      <div class="col-md-5 text-center">
+      <div class="col-md-6 text-center">
         <p class="lead">Tus herramientas webcam favoritas</p>
         <div class="list-group mt-4">
           <RouterLink
