@@ -11,7 +11,8 @@ const routes = [
     component: Timer,
     meta: {
       title: 'Cuenta Regresiva',
-      description: 'Configura temporizadores personalizados',
+      description:
+        '    Configura el tiempo de cada room y tus descansos fácilmente.',
       icon: 'bi bi-stopwatch',
     },
   },
@@ -20,7 +21,8 @@ const routes = [
     component: TokensCalculator,
     meta: {
       title: 'Calculadora de Tokens',
-      description: 'Calcula y estima tokens de texto',
+      description:
+        '    Ingresa los datos y calcula las ganancias de modelo y estudio al instante.',
       icon: 'bi bi-calculator',
     },
     // },
