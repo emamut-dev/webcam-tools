@@ -135,6 +135,7 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import { Tooltip } from 'bootstrap';
 
 const STORAGE_KEY = 'tokens-calculator-data';
 
@@ -193,6 +194,16 @@ onMounted(async () => {
   } finally {
     loadingRate.value = false;
   }
+
+  // Initialize tooltips after DOM is ready
+  setTimeout(() => {
+    const tooltipTriggerList = document.querySelectorAll(
+      '[data-bs-toggle="tooltip"]',
+    );
+    [...tooltipTriggerList].forEach(
+      (tooltipTriggerEl) => new Tooltip(tooltipTriggerEl),
+    );
+  }, 0);
 });
 
 watch([modelTokens, percentage, tokenValue, dollarValue], () => {
