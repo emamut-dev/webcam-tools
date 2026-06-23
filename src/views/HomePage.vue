@@ -9,10 +9,13 @@ const routes = router
 
 <template>
   <div class="container">
-    <div class="row justify-content-center mt-4">
+    <div class="row justify-content-center mt-5">
       <div class="col-md-6 text-center">
-        <p class="lead">Tus herramientas webcam favoritas</p>
-        <div class="list-group mt-4">
+        <p class="lead">
+          Herramientas inteligentes creadas para facilitar la gestión de
+          modelos, estudios y transmisiones en un solo lugar.
+        </p>
+        <div class="list-group mt-5">
           <RouterLink
             v-for="route in routes"
             :key="route.path"
