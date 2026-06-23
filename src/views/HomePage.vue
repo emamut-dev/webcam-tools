@@ -9,7 +9,7 @@ const routes = router
 
 <template>
   <div class="container">
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-4">
       <div class="col-md-6 text-center">
         <p class="lead">
           Herramientas inteligentes creadas para facilitar la gestión de
