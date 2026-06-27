@@ -1,16 +1,20 @@
 <script setup>
 import { ref } from 'vue';
+import BiStopwatch from '~icons/bi/stopwatch';
+import BiCalculator from '~icons/bi/calculator';
 
 const menuItems = ref([
   { label: 'Inicio', path: '/' },
   {
-    label: '<i class="bi bi-stopwatch"></i> Cuenta Rregresiva',
+    label: 'Cuenta Regresiva',
     path: '/timer',
+    icon: BiStopwatch,
   },
   // { label: 'Tags', path: '/tags' },
   {
-    label: '<i class="bi bi-calculator"></i> Calculadora de Tokens',
+    label: 'Calculadora de Tokens',
     path: '/tokens-calculator',
+    icon: BiCalculator,
   },
 ]);
 </script>
@@ -38,12 +42,9 @@ const menuItems = ref([
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item" v-for="item in menuItems" :key="item.path">
-            <RouterLink
-              :to="item.path"
-              class="nav-link"
-              active-class="active"
-              v-html="item.label"
-            >
+            <RouterLink :to="item.path" class="nav-link" active-class="active">
+              <component v-if="item.icon" :is="item.icon" class="me-2" />
+              {{ item.label }}
             </RouterLink>
           </li>
         </ul>

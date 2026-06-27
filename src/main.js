@@ -2,8 +2,6 @@ import { createApp } from 'vue';
 import router from './router/';
 import App from './App.vue';
 
-import 'bootstrap-icons/font/bootstrap-icons.css';
-
 import '@fontsource/montserrat/400.css';
 import '@fontsource/montserrat/500.css';
 import '@fontsource/montserrat/600.css';

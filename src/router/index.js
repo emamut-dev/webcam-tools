@@ -3,6 +3,8 @@ import HomePage from '@/views/HomePage.vue';
 import TokensCalculator from '@/views/TokensCalculatorPage.vue';
 import Tags from '@/views/TagsPage.vue';
 import Timer from '@/views/TimerPage.vue';
+import BiStopwatch from '~icons/bi/stopwatch';
+import BiCalculator from '~icons/bi/calculator';
 
 const routes = [
   { path: '/', component: HomePage, meta: { title: 'Inicio' } },
@@ -13,7 +15,7 @@ const routes = [
       title: 'Cuenta Regresiva',
       description:
         '    Configura el tiempo de cada room y tus descansos fácilmente.',
-      icon: 'bi bi-stopwatch',
+      icon: BiStopwatch,
     },
   },
   {
@@ -23,7 +25,7 @@ const routes = [
       title: 'Calculadora de Tokens',
       description:
         '    Ingresa los datos y calcula las ganancias de modelo y estudio al instante.',
-      icon: 'bi bi-calculator',
+      icon: BiCalculator,
     },
     // },
     // {

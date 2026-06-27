@@ -3,7 +3,8 @@
     <div class="row justify-content-between">
       <div class="col">
         <p class="text-white-50 mt-5 mb-3">
-          Derechos reservados <i class="bi bi-c-circle text-warning"></i>
+          Derechos reservados
+          <BiCircle class="text-warning" />
           {{ year }}
           Webcam Tools.
         </p>
@@ -28,5 +29,7 @@
 </template>
 
 <script setup>
+import BiCircle from '~icons/bi/c-circle';
+
 const year = new Date().getFullYear();
 </script>

@@ -2,9 +2,7 @@
   <div class="container mt-4">
     <div class="row justify-content-center mb-4">
       <div class="col-md-8 text-center">
-        <h1 class="fw-bold">
-          <i class="bi bi-stopwatch"></i> Cuenta Regresiva
-        </h1>
+        <h1 class="fw-bold"><BiStopwatch class="me-2" /> Cuenta Regresiva</h1>
         <p class="text-white-50 mb-0">
           Configura una cuenta regresiva para cada room y administra tus tiempos
           de descanso según tus necesidades.
@@ -46,7 +44,7 @@
                     type="button"
                     @click="removeRoom(index)"
                   >
-                    <i class="bi bi-x-lg"></i>
+                    <BiXLg />
                   </button>
                 </div>
               </div>
@@ -82,6 +80,8 @@
 <script setup>
 import { computed, ref, onMounted, watch } from 'vue';
 import RoomTimers from '@/components/RoomTimers.vue';
+import BiStopwatch from '~icons/bi/stopwatch';
+import BiXLg from '~icons/bi/x-lg';
 
 const durationMinutes = ref(20);
 const rooms = ref(['Room 1', 'Room 2', 'Room 3']);
