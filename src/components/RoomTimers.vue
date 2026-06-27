@@ -62,7 +62,7 @@
                 @click="startRoom(room)"
                 :disabled="room.running || room.remaining === 0"
               >
-                <i class="bi bi-play-fill fs-4"></i>
+                <BiPlayFill class="fs-4" />
               </button>
               <button
                 class="btn btn-sm btn-warning flex-grow-1"
@@ -70,14 +70,14 @@
                 @click="stopRoom(room)"
                 :disabled="!room.running"
               >
-                <i class="bi bi-pause-fill fs-4"></i>
+                <BiPauseFill class="fs-4" />
               </button>
               <button
                 class="btn btn-sm btn-light flex-grow-1"
                 type="button"
                 @click="resetRoom(room)"
               >
-                <i class="bi bi-arrow-counterclockwise fs-4"></i>
+                <BiArrowCounterclockwise class="fs-4" />
               </button>
             </div>
           </div>
@@ -89,6 +89,9 @@
 
 <script setup>
 import { onBeforeUnmount, ref, watch } from 'vue';
+import BiPlayFill from '~icons/bi/play-fill';
+import BiPauseFill from '~icons/bi/pause-fill';
+import BiArrowCounterclockwise from '~icons/bi/arrow-counterclockwise';
 
 const props = defineProps({
   rooms: {

@@ -17,9 +17,6 @@ importers:
       bootstrap:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
-      bootstrap-icons:
-        specifier: ^1.13.1
-        version: 1.13.1
       vue:
         specifier: ^3.5.32
         version: 3.5.35
@@ -27,14 +24,23 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(@vue/compiler-sfc@3.5.35)(vite@8.0.16(yaml@2.9.0))(vue@3.5.35)
     devDependencies:
+      '@iconify/json':
+        specifier: ^2.2.491
+        version: 2.2.491
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
         version: 6.0.7(vite@8.0.16(yaml@2.9.0))(vue@3.5.35)
+      unplugin-icons:
+        specifier: ^23.0.1
+        version: 23.0.1(@vue/compiler-sfc@3.5.35)
       vite:
         specifier: ^8.0.4
         version: 8.0.16(yaml@2.9.0)
 
 packages:
+
+  '@antfu/install-pkg@1.1.0':
+    resolution: {integrity: sha512-MGQsmw10ZyI+EJo45CdSER4zEb+p31LpDAFp2Z3gkSd1yqVZGi0Ebx++YTEMonJy4oChEMLsxZ64j8FH6sSqtQ==}
 
   '@babel/generator@8.0.0-rc.6':
     resolution: {integrity: sha512-6mIzgVK8DgEzvIapoQwhXTMnnkuE4STQmVv9H03i/tZ2ml8oev3TRvZJgTenK2Bsq0YWNtzOrFdTyNzCMFtjJQ==}
@@ -85,6 +91,15 @@ packages:
 
   '@fontsource/montserrat@5.2.8':
     resolution: {integrity: sha512-xTjLxSbSfCycDB0pwmNsfNvdfWPaDaRQ2LC6yt/ZI7SdvXG52zHnzNYC/09mzuAuWNJyShkteutfCoDgym56hQ==}
+
+  '@iconify/json@2.2.491':
+    resolution: {integrity: sha512-23r0rvHuL2TL0bDPnnWV+fUB/XUrJUZtWiashZwCKuc7lmAu9Q7lwOx/xK5k7eSl+TPpoID7qioT5Rno0vZcKw==}
+
+  '@iconify/types@2.0.0':
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
+
+  '@iconify/utils@3.1.3':
+    resolution: {integrity: sha512-LPKOXPn/zV+zis1oOfGWogaXVpqUybF3ZS6SCZIsz8vg0ivVp9+fVqyYB7xq0aiST/VhUQYGO1qo6uoYSiEJqw==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -288,9 +303,6 @@ packages:
   birpc@2.9.0:
     resolution: {integrity: sha512-KrayHS5pBi69Xi9JmvoqrIgYGDkD6mcSe/i6YKi3w5kekCLzrX4+nawcXqrj2tIp50Kw/mT/s3p+GVK0A0sKxw==}
 
-  bootstrap-icons@1.13.1:
-    resolution: {integrity: sha512-ijombt4v6bv5CLeXvRWKy7CuM3TRTuPEuGaGKvTV5cz65rQSY8RQ2JcHt6b90cBBAC7s8fsf2EkQDldzCoXUjw==}
-
   bootstrap@5.3.8:
     resolution: {integrity: sha512-HP1SZDqaLDPwsNiqRqi5NcP0SSXciX2s9E+RyqJIIqGo+vJeN5AJVM98CXmW/Wux0nQ5L7jeWUdplCEf0Ee+tg==}
     peerDependencies:
@@ -339,6 +351,9 @@ packages:
 
   hookable@5.5.3:
     resolution: {integrity: sha512-Yc+BQe8SvoXH1643Qez1zqLRmbA5rCL+sSmk6TVos0LWVfNIB7PGncdlId77WzLGSIB5KaWgTaNTs2lNVEI6VQ==}
+
+  import-meta-resolve@4.2.0:
+    resolution: {integrity: sha512-Iqv2fzaTQN28s/FwZAoFq0ZSs/7hMAHJVX+w8PZl3cY19Pxk6jFFalxQoIfW2826i/fDLXv8IiEZRIT0lDuWcg==}
 
   jsesc@3.1.0:
     resolution: {integrity: sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==}
@@ -446,6 +461,13 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
+  obug@2.1.3:
+    resolution: {integrity: sha512-9miFgM2OFba7hB+pRgvtV84pYTBaoTHohvmIgiRt6dRIzbwEOIaNaP+dIlGs2fNFoB0SeISs0Jz5WFVRid6Xyg==}
+    engines: {node: '>=12.20.0'}
+
+  package-manager-detector@1.6.0:
+    resolution: {integrity: sha512-61A5ThoTiDG/C8s8UMZwSorAGwMJ0ERVGj2OjoW5pAalsNOg15+iQiPzrLJ4jhZ1HJzmC2PIHT2oEiH3R5fzNA==}
+
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
@@ -488,6 +510,10 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
+  tinyexec@1.2.4:
+    resolution: {integrity: sha512-SHf/r48b7vOrjve9PxJo3MN5v5yuyjHvdUcrQffT3WXMUfnGmHDVbC4k3sHJaJTgZCwpUplIaAo5ANtMyp3YHg==}
+    engines: {node: '>=18'}
+
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
     engines: {node: '>=12.0.0'}
@@ -498,9 +524,30 @@ packages:
   ufo@1.6.4:
     resolution: {integrity: sha512-JFNbkD1Svwe0KvGi8GOeLcP4kAWQ609twvCdcHxq1oSL8svv39ZuSvajcD8B+5D0eL4+s1Is2D/O6KN3qcTeRA==}
 
+  unplugin-icons@23.0.1:
+    resolution: {integrity: sha512-rv0XEJepajKzDLvRUWASM8K+8+/CCfZn2jtogXqg6RIp7kpatRc/aFrVJn8ANQA09e++lPEEv9yX8cC9enc+QQ==}
+    peerDependencies:
+      '@svgr/core': '>=7.0.0'
+      '@svgx/core': ^1.0.1
+      '@vue/compiler-sfc': ^3.0.2
+      svelte: ^3.0.0 || ^4.0.0 || ^5.0.0
+    peerDependenciesMeta:
+      '@svgr/core':
+        optional: true
+      '@svgx/core':
+        optional: true
+      '@vue/compiler-sfc':
+        optional: true
+      svelte:
+        optional: true
+
   unplugin-utils@0.3.1:
     resolution: {integrity: sha512-5lWVjgi6vuHhJ526bI4nlCOmkCIF3nnfXkCMDeMJrtdvxTs6ZFCM8oNufGTsDbKv/tJ/xj8RpvXjRuPBZJuJog==}
     engines: {node: '>=20.19.0'}
+
+  unplugin@2.3.11:
+    resolution: {integrity: sha512-5uKD0nqiYVzlmCRs01Fhs2BdkEgBS3SAVP6ndrBsuK42iC2+JHyxM05Rm9G8+5mkmRtzMZGY8Ct5+mliZxU/Ww==}
+    engines: {node: '>=18.12.0'}
 
   unplugin@3.0.0:
     resolution: {integrity: sha512-0Mqk3AT2TZCXWKdcoaufeXNukv2mTrEZExeXlHIOZXdqYoHHr4n51pymnwV8x2BOVxwXbK2HLlI7usrqMpycdg==}
@@ -585,6 +632,11 @@ packages:
 
 snapshots:
 
+  '@antfu/install-pkg@1.1.0':
+    dependencies:
+      package-manager-detector: 1.6.0
+      tinyexec: 1.2.4
+
   '@babel/generator@8.0.0-rc.6':
     dependencies:
       '@babel/parser': 8.0.0-rc.6
@@ -637,6 +689,19 @@ snapshots:
     optional: true
 
   '@fontsource/montserrat@5.2.8': {}
+
+  '@iconify/json@2.2.491':
+    dependencies:
+      '@iconify/types': 2.0.0
+      pathe: 2.0.3
+
+  '@iconify/types@2.0.0': {}
+
+  '@iconify/utils@3.1.3':
+    dependencies:
+      '@antfu/install-pkg': 1.1.0
+      '@iconify/types': 2.0.0
+      import-meta-resolve: 4.2.0
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -824,8 +889,6 @@ snapshots:
 
   birpc@2.9.0: {}
 
-  bootstrap-icons@1.13.1: {}
-
   bootstrap@5.3.8(@popperjs/core@2.11.8):
     dependencies:
       '@popperjs/core': 2.11.8
@@ -856,6 +919,8 @@ snapshots:
     optional: true
 
   hookable@5.5.3: {}
+
+  import-meta-resolve@4.2.0: {}
 
   jsesc@3.1.0: {}
 
@@ -935,6 +1000,10 @@ snapshots:
 
   nanoid@3.3.12: {}
 
+  obug@2.1.3: {}
+
+  package-manager-detector@1.6.0: {}
+
   pathe@2.0.3: {}
 
   perfect-debounce@2.1.0: {}
@@ -990,6 +1059,8 @@ snapshots:
 
   source-map-js@1.2.1: {}
 
+  tinyexec@1.2.4: {}
+
   tinyglobby@0.2.17:
     dependencies:
       fdir: 6.5.0(picomatch@4.0.4)
@@ -1000,10 +1071,27 @@ snapshots:
 
   ufo@1.6.4: {}
 
+  unplugin-icons@23.0.1(@vue/compiler-sfc@3.5.35):
+    dependencies:
+      '@antfu/install-pkg': 1.1.0
+      '@iconify/utils': 3.1.3
+      local-pkg: 1.2.1
+      obug: 2.1.3
+      unplugin: 2.3.11
+    optionalDependencies:
+      '@vue/compiler-sfc': 3.5.35
+
   unplugin-utils@0.3.1:
     dependencies:
       pathe: 2.0.3
       picomatch: 4.0.4
+
+  unplugin@2.3.11:
+    dependencies:
+      '@jridgewell/remapping': 2.3.5
+      acorn: 8.16.0
+      picomatch: 4.0.4
+      webpack-virtual-modules: 0.6.2
 
   unplugin@3.0.0:
     dependencies:

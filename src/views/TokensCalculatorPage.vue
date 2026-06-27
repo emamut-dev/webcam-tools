@@ -2,7 +2,7 @@
   <div class="row justify-content-center mt-4">
     <div class="col-md-8">
       <h1 class="text-center fw-bold">
-        <i class="bi bi-calculator"></i> Calculadora de Tokens
+        <BiCalculator class="me-2" /> Calculadora de Tokens
       </h1>
       <p class="text-center text-white-50">
         Ingresa los datos y obtén el desglose de ganancias para modelo y estudio
@@ -13,12 +13,12 @@
   <div class="row mt-5">
     <div class="col-md-5 border border-secondary rounded-5 p-5">
       <h4 class="fw-bold">
-        <i class="bi bi-graph-up text-warning"></i> Parámetros de Cálculo
+        <BiGraphUp class="text-warning me-2" /> Parámetros de Cálculo
       </h4>
       <form @change="calcular">
         <div class="mt-4">
           <label for="tokens-value" class="form-label"
-            ><i class="bi bi-coin text-warning"></i> Cantidad de Tokens</label
+            ><BiCoin class="text-warning me-1" /> Cantidad de Tokens</label
           >
           <input
             type="number"
@@ -31,7 +31,7 @@
         </div>
         <div class="mt-4">
           <label for="percentage" class="form-label"
-            ><i class="bi bi-percent text-warning"></i> Porcentaje para la
+            ><BiPercent class="text-warning me-1" /> Porcentaje para la
             modelo</label
           >
           <input
@@ -59,7 +59,7 @@
         </div>
         <div class="mt-4 w-50">
           <label for="token-value" class="form-label"
-            ><i class="bi bi-coin text-warning"></i> Valor por Token
+            ><BiCoin class="text-warning me-1" /> Valor por Token
           </label>
           <div class="input-group mt-1">
             <span
@@ -76,15 +76,14 @@
         </div>
         <div class="mt-4">
           <label for="dollar-value" class="form-label"
-            ><i class="bi bi-currency-dollar text-warning"></i> TRM del Dólar
-            &nbsp;
+            ><BiCurrencyDollar class="text-warning me-1" /> TRM del Dólar &nbsp;
           </label>
           <a
             href="#"
             data-bs-toggle="tooltip"
             data-bs-title="Valor tomado automáticamente desde la API de DolarAPI, puedes modificarlo si lo deseas"
-            ><i class="bi bi-info-circle text-warning"></i
-          ></a>
+            ><BiInfoCircle class="text-warning" />
+          </a>
           <div class="input-group mt-1">
             <span
               class="input-group-text bg-dark text-white border-3 border-warning"
@@ -102,7 +101,7 @@
     </div>
     <div class="col mt-4 mt-md-0">
       <div class="text-center border border-secondary rounded-5 p-4">
-        <p><i class="bi bi-person text-warning"></i> Valor para la modelo</p>
+        <p><BiPerson class="text-warning me-1" /> Valor para la modelo</p>
         <p class="big-text text-warning fw-bold">{{ calcular() }} <br /></p>
         <p class="small">{{ percentage }}% del total producido</p>
       </div>
@@ -112,16 +111,14 @@
         <div
           class="text-center border border-secondary rounded-5 p-4 mt-4 flex-fill"
         >
-          <p>
-            <i class="bi bi-building text-warning"></i> Valor para el estudio
-          </p>
+          <p><BiBuilding class="text-warning me-1" /> Valor para el estudio</p>
           <p class="h2 fw-bold">{{ parseUSD(studioValue) }}</p>
         </div>
         <div
           class="text-center border border-secondary rounded-5 p-4 mt-4 flex-fill"
         >
           <p class="text-center">
-            <i class="bi bi-graph-up text-warning"></i> Total producido
+            <BiGraphUp class="text-warning me-1" /> Total producido
           </p>
           <p class="h2 fw-bold">{{ parseUSD(totalValue) }}</p>
           <p class="small">
@@ -136,6 +133,14 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { Tooltip } from 'bootstrap';
+import BiCalculator from '~icons/bi/calculator';
+import BiGraphUp from '~icons/bi/graph-up';
+import BiCoin from '~icons/bi/coin';
+import BiPercent from '~icons/bi/percent';
+import BiCurrencyDollar from '~icons/bi/currency-dollar';
+import BiInfoCircle from '~icons/bi/info-circle';
+import BiPerson from '~icons/bi/person';
+import BiBuilding from '~icons/bi/building';
 
 const STORAGE_KEY = 'tokens-calculator-data';
 

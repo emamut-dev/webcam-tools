@@ -10,10 +10,6 @@
   font-size: 4rem;
 }
 
-.bi {
-  font-size: 0.9em;
-}
-
 .nav-underline .nav-link.active {
   border-bottom-color: var(--bs-warning);
 }
