@@ -8,7 +8,7 @@ export default defineConfig({
     vue(),
     Icons({
       compiler: 'vue3',
-      defaultStyle: 'font-size: 0.9em',
+      defaultStyle: 'font-size: 0.7em',
     }),
   ],
   resolve: {
