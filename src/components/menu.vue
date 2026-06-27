@@ -43,7 +43,7 @@ const menuItems = ref([
         <ul class="navbar-nav ms-auto">
           <li class="nav-item" v-for="item in menuItems" :key="item.path">
             <RouterLink :to="item.path" class="nav-link" active-class="active">
-              <component v-if="item.icon" :is="item.icon" class="me-2" />
+              <component v-if="item.icon" :is="item.icon" class="me-1" />
               {{ item.label }}
             </RouterLink>
           </li>
