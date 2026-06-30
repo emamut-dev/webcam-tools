@@ -1,5 +1,7 @@
 # Webcam Tools
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3af6bdef-cb97-4954-9042-a5a8082275cf/deploy-status)](https://app.netlify.com/projects/webcam-tools/deploys)
+
 Una aplicación web ligera creada con Vue 3 y Vite para apoyar tareas rápidas de transmisión y webcam.
 
 ## Descripción
