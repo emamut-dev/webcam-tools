@@ -1,127 +1,161 @@
 <template>
-  <div class="row justify-content-center mt-4">
-    <div class="col-md-8">
-      <h1 class="text-center fw-bold">
-        <BiCalculator class="me-2" /> Calculadora de Tokens
+  <div class="mt-4 flex justify-center">
+    <div class="w-full max-w-3xl text-center">
+      <h1 class="text-center text-3xl font-bold text-slate-100">
+        <BiCalculator class="mr-2 inline" /> Calculadora de Tokens
       </h1>
-      <p class="text-center text-white-50">
+      <p class="mx-auto mt-3 max-w-2xl text-slate-400">
         Ingresa los datos y obtén el desglose de ganancias para modelo y estudio
         de manera instantánea.
       </p>
     </div>
   </div>
-  <div class="row mt-5">
-    <div class="col-md-5 border border-secondary rounded-5 p-5">
-      <h4 class="fw-bold">
-        <BiGraphUp class="text-warning me-2" /> Parámetros de Cálculo
+
+  <div
+    class="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] mx-auto"
+  >
+    <div
+      class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 shadow-sm"
+    >
+      <h4 class="text-xl font-semibold text-slate-100">
+        <BiGraphUp class="mr-2 inline text-amber-400" /> Parámetros de Cálculo
       </h4>
-      <form @change="calcular">
-        <div class="mt-4">
-          <label for="tokens-value" class="form-label"
-            ><BiCoin class="text-warning me-1" /> Cantidad de Tokens</label
+
+      <form @change="calcular" class="mt-6 space-y-5">
+        <div>
+          <label
+            for="tokens-value"
+            class="mb-2 flex items-center text-sm font-medium text-slate-300"
           >
+            <BiCoin class="mr-2 text-amber-400" /> Cantidad de Tokens
+          </label>
           <input
-            type="number"
-            class="form-control bg-dark text-white border-3 border-warning"
             id="tokens-value"
             v-model="modelTokens"
-            autocomplete="off"
+            type="number"
             min="0"
+            autocomplete="off"
+            class="w-full rounded-xl border border-amber-400/60 bg-slate-950/70 px-3 py-2 text-slate-100 outline-none ring-0"
           />
         </div>
-        <div class="mt-4">
-          <label for="percentage" class="form-label"
-            ><BiPercent class="text-warning me-1" /> Porcentaje para la
-            modelo</label
+
+        <div>
+          <label
+            for="percentage"
+            class="mb-2 flex items-center text-sm font-medium text-slate-300"
           >
+            <BiPercent class="mr-2 text-amber-400" /> Porcentaje para la modelo
+          </label>
           <input
-            type="range"
-            class="form-range"
             id="percentage"
+            v-model="percentage"
+            type="range"
             min="0"
             max="100"
-            v-model="percentage"
+            class="w-full accent-amber-400"
           />
-          <div class="input-group mt-1 w-50">
+          <div class="mt-2 flex items-center gap-2">
             <input
-              type="number"
-              class="form-control bg-dark text-white border-3 border-warning"
-              v-model="percentage"
               id="percentage-input"
+              v-model="percentage"
+              type="number"
               min="0"
               max="100"
+              class="w-full rounded-xl border border-amber-400/60 bg-slate-950/70 px-3 py-2 text-slate-100 outline-none ring-0"
             />
             <span
-              class="input-group-text bg-dark text-white border-3 border-warning"
+              class="rounded-xl border border-amber-400/60 bg-slate-950/70 px-3 py-2 text-slate-100"
               >%</span
             >
           </div>
         </div>
-        <div class="mt-4 w-50">
-          <label for="token-value" class="form-label"
-            ><BiCoin class="text-warning me-1" /> Valor por Token
+
+        <div>
+          <label
+            for="token-value"
+            class="mb-2 flex items-center text-sm font-medium text-slate-300"
+          >
+            <BiCoin class="mr-2 text-amber-400" /> Valor por Token
           </label>
-          <div class="input-group mt-1">
-            <span
-              class="input-group-text bg-dark text-white border-3 border-warning"
-              >$</span
-            >
+          <div
+            class="flex items-center overflow-hidden rounded-xl border border-amber-400/60 bg-slate-950/70"
+          >
+            <span class="px-3 py-2 text-slate-100">$</span>
             <input
-              type="number"
-              class="form-control bg-dark text-white border-3 border-warning"
               id="token-value"
               v-model="tokenValue"
+              type="number"
+              class="w-full bg-transparent px-3 py-2 text-slate-100 outline-none ring-0"
             />
           </div>
         </div>
-        <div class="mt-4">
-          <label for="dollar-value" class="form-label"
-            ><BiCurrencyDollar class="text-warning me-1" /> TRM del Dólar &nbsp;
+
+        <div>
+          <label
+            for="dollar-value"
+            class="mb-2 flex items-center text-sm font-medium text-slate-300"
+          >
+            <BiCurrencyDollar class="mr-2 text-amber-400" /> TRM del Dólar
           </label>
           <a
             href="#"
+            class="ml-1 inline-flex text-amber-400"
             data-bs-toggle="tooltip"
             data-bs-title="Valor tomado automáticamente desde la API de DolarAPI, puedes modificarlo si lo deseas"
-            ><BiInfoCircle class="text-warning" />
+          >
+            <BiInfoCircle />
           </a>
-          <div class="input-group mt-1">
-            <span
-              class="input-group-text bg-dark text-white border-3 border-warning"
-              >$</span
-            >
+          <div
+            class="mt-2 flex items-center overflow-hidden rounded-xl border border-amber-400/60 bg-slate-950/70"
+          >
+            <span class="px-3 py-2 text-slate-100">$</span>
             <input
-              type="number"
-              class="form-control bg-dark text-white border-3 border-warning"
               id="dollar-value"
               v-model="dollarValue"
+              type="number"
+              class="w-full bg-transparent px-3 py-2 text-slate-100 outline-none ring-0"
             />
           </div>
         </div>
       </form>
     </div>
-    <div class="col mt-4 mt-md-0">
-      <div class="text-center border border-secondary rounded-5 p-4">
-        <p><BiPerson class="text-warning me-1" /> Valor para la modelo</p>
-        <p class="big-text text-warning fw-bold">{{ calcular() }} <br /></p>
-        <p class="small">{{ percentage }}% del total producido</p>
-      </div>
+
+    <div class="flex flex-col gap-4">
       <div
-        class="d-flex flex-column flex-md-row flex-wrap justify-content-between w-100 gap-2"
+        class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 text-center shadow-sm"
       >
+        <p class="flex items-center justify-center text-slate-300">
+          <BiPerson class="mr-2 text-amber-400" /> Valor para la modelo
+        </p>
+        <p class="mt-3 text-5xl font-bold text-amber-400 sm:text-6xl">
+          {{ calcular() }}
+        </p>
+        <p class="mt-2 text-sm text-slate-400">
+          {{ percentage }}% del total producido
+        </p>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
         <div
-          class="text-center border border-secondary rounded-5 p-4 mt-4 flex-fill"
+          class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 text-center shadow-sm"
         >
-          <p><BiBuilding class="text-warning me-1" /> Valor para el estudio</p>
-          <p class="h2 fw-bold">{{ parseUSD(studioValue) }}</p>
+          <p class="flex items-center justify-center text-slate-300">
+            <BiBuilding class="mr-2 text-amber-400" /> Valor para el estudio
+          </p>
+          <p class="mt-3 text-3xl font-bold text-slate-100">
+            {{ parseUSD(studioValue) }}
+          </p>
         </div>
         <div
-          class="text-center border border-secondary rounded-5 p-4 mt-4 flex-fill"
+          class="rounded-3xl border border-slate-800 bg-slate-900/80 p-6 text-center shadow-sm"
         >
-          <p class="text-center">
-            <BiGraphUp class="text-warning me-1" /> Total producido
+          <p class="flex items-center justify-center text-slate-300">
+            <BiGraphUp class="mr-2 text-amber-400" /> Total producido
           </p>
-          <p class="h2 fw-bold">{{ parseUSD(totalValue) }}</p>
-          <p class="small">
+          <p class="mt-3 text-3xl font-bold text-slate-100">
+            {{ parseUSD(totalValue) }}
+          </p>
+          <p class="mt-2 text-sm text-slate-400">
             En dolares: {{ parseUSD(totalValue / dollarValue) }}
           </p>
         </div>
@@ -132,7 +166,6 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
-import { Tooltip } from 'bootstrap';
 import BiCalculator from '~icons/bi/calculator';
 import BiGraphUp from '~icons/bi/graph-up';
 import BiCoin from '~icons/bi/coin';

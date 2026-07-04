@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <div class="row mt-4">
     <div class="col text-center">
@@ -8,3 +6,5 @@
     </div>
   </div>
 </template>
+
+<script setup></script>
