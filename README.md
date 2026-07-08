@@ -19,7 +19,7 @@ Una aplicación web ligera creada con Vue 3 y Vite para apoyar tareas rápidas d
 - Vue 3
 - Vite
 - Vue Router
-- Bootstrap 5
+- Tailwind CSS
 - Bootstrap Icons
 - Montserrat (fuente)
 
@@ -62,7 +62,7 @@ pnpm preview
 
 - `vue`
 - `vue-router`
-- `bootstrap`
+- `tailwind`
 - `bootstrap-icons`
 - `@fontsource/montserrat`
 
