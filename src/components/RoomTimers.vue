@@ -1,85 +1,90 @@
 <template>
-  <div class="room-timers">
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <div class="btn-group">
-        <button class="btn btn-sm btn-success" type="button" @click="startAll">
-          Iniciar todos
-        </button>
-        <button
-          class="btn btn-sm btn-warning mx-3"
-          type="button"
-          @click="stopAll"
-        >
-          Pausar todos
-        </button>
-        <button
-          class="btn btn-sm btn-outline-secondary"
-          type="button"
-          @click="resetAll"
-        >
-          Reiniciar todos
-        </button>
-      </div>
+  <div class="space-y-4">
+    <div class="flex flex-wrap items-center gap-2">
+      <button
+        type="button"
+        class="rounded-xl bg-emerald-500 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-emerald-400 hover:cursor-pointer"
+        @click="startAll"
+      >
+        Iniciar todos
+      </button>
+      <button
+        type="button"
+        class="rounded-xl bg-amber-500 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-amber-400 hover:cursor-pointer"
+        @click="stopAll"
+      >
+        Pausar todos
+      </button>
+      <button
+        type="button"
+        class="rounded-xl border border-slate-700 px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:cursor-pointer"
+        @click="resetAll"
+      >
+        Reiniciar todos
+      </button>
     </div>
 
-    <div class="row g-3">
-      <div class="col-12 col-md-6" v-for="room in roomStates" :key="room.id">
+    <div class="grid gap-4 md:grid-cols-2">
+      <div v-for="room in roomStates" :key="room.id" class="h-full">
         <div
-          class="card bg-dark text-white border-secondary rounded-5 h-100 shadow-sm"
+          class="flex h-full flex-col rounded-3xl border border-slate-800 bg-slate-900/80 p-5 shadow-sm"
         >
-          <div class="card-body d-flex flex-column">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-              <div>
-                <h5 class="card-title mb-1">{{ room.name }}</h5>
-                <p class="text-muted mb-0">
-                  Duración inicial: {{ formatTime(initialDuration) }}
-                </p>
-              </div>
-              <span
-                class="badge align-self-start"
-                :class="
-                  room.status === 'Activo'
-                    ? 'bg-success'
-                    : room.status === 'Detenido'
-                      ? 'bg-danger'
-                      : 'bg-secondary'
-                "
-                >{{ room.status }}</span
-              >
-            </div>
-
-            <div class="text-center mb-3">
-              <p class="display-6 mb-1">{{ formatTime(room.remaining) }}</p>
-              <p class="text-muted mb-0">
-                {{ room.remaining === 0 ? 'Terminado' : 'En curso' }}
+          <div class="mb-4 flex items-start justify-between gap-3">
+            <div>
+              <h5 class="text-lg font-semibold text-slate-100">
+                {{ room.name }}
+              </h5>
+              <p class="mt-1 text-sm text-slate-400">
+                Duración inicial: {{ formatTime(initialDuration) }}
               </p>
             </div>
+            <span
+              class="rounded-full px-2.5 py-1 text-xs font-semibold"
+              :class="
+                room.status === 'Activo'
+                  ? 'bg-emerald-500/20 text-emerald-400'
+                  : room.status === 'Detenido'
+                    ? 'bg-rose-500/20 text-rose-400'
+                    : 'bg-slate-700 text-slate-300'
+              "
+            >
+              {{ room.status }}
+            </span>
+          </div>
 
-            <div class="mt-auto d-flex flex-wrap gap-2">
-              <button
-                class="btn btn-sm btn-success flex-grow-1"
-                type="button"
-                @click="startRoom(room)"
-                :disabled="room.running || room.remaining === 0"
-              >
-                <BiPlayFill class="fs-4" />
-              </button>
-              <button
-                class="btn btn-sm btn-warning flex-grow-1"
-                type="button"
-                @click="stopRoom(room)"
-                :disabled="!room.running"
-              >
-                <BiPauseFill class="fs-4" />
-              </button>
-              <button
-                class="btn btn-sm btn-light flex-grow-1"
-                type="button"
-                @click="resetRoom(room)"
-              >
-                <BiArrowCounterclockwise class="fs-4" />
-              </button>
-            </div>
+          <div class="mb-4 text-center">
+            <p class="text-5xl font-semibold text-slate-100">
+              {{ formatTime(room.remaining) }}
+            </p>
+            <p class="mt-2 text-sm text-slate-400">
+              {{ room.remaining === 0 ? 'Terminado' : 'En curso' }}
+            </p>
+          </div>
+
+          <div class="mt-auto grid gap-2 sm:grid-cols-3">
+            <button
+              type="button"
+              class="rounded-xl bg-emerald-500 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50 hover:cursor-pointer"
+              @click="startRoom(room)"
+              :disabled="room.running || room.remaining === 0"
+            >
+              <BiPlayFill class="mx-auto w-6 h-8" />
+            </button>
+            <button
+              type="button"
+              class="rounded-xl bg-amber-500 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-50 hover:cursor-pointer"
+              @click="stopRoom(room)"
+              :disabled="!room.running"
+            >
+              <BiPauseFill class="mx-auto w-6 h-8" />
+            </button>
+            <button
+              type="button"
+              class="rounded-xl border border-slate-700 px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:cursor-pointer"
+              @click="resetRoom(room)"
+            >
+              <BiArrowCounterclockwise class="mx-auto w-6 h-6" />
+            </button>
           </div>
         </div>
       </div>

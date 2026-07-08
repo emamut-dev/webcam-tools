@@ -1,5 +1,7 @@
-:root {
-  --bs-body-font-family: 'Montserrat', sans-serif;
+@import 'tailwindcss';
+
+@theme {
+  --default-font-family: 'Montserrat', sans-serif;
 }
 
 [v-cloak] {
@@ -12,8 +14,4 @@
 
 .nav-underline .nav-link.active {
   border-bottom-color: var(--bs-warning);
-}
-
-#logo-emamut {
-  width: 5rem;
 }

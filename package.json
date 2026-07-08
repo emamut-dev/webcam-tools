@@ -10,14 +10,14 @@
   },
   "dependencies": {
     "@fontsource/montserrat": "^5.2.8",
-    "@popperjs/core": "^2.11.8",
-    "bootstrap": "^5.3.8",
     "vue": "^3.5.32",
     "vue-router": "^5.1.0"
   },
   "devDependencies": {
     "@iconify/json": "^2.2.491",
+    "@tailwindcss/vite": "^4.3.2",
     "@vitejs/plugin-vue": "^6.0.5",
+    "tailwindcss": "^4.3.2",
     "unplugin-icons": "^23.0.1",
     "vite": "^8.0.4"
   }
