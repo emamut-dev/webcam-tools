@@ -5,7 +5,7 @@ import Footer from '@/components/footer.vue';
 
 <template>
   <Menu />
-  <div class="container" id="main-container">
+  <div class="container mx-auto" id="main-container">
     <router-view />
   </div>
   <Footer />
