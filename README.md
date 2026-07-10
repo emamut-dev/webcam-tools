@@ -16,11 +16,11 @@ Una aplicación web ligera creada con Vue 3 y Vite para apoyar tareas rápidas d
 
 ## Tecnologías
 
-- Vue 3
-- Vite
-- Vue Router
-- Tailwind CSS
-- Bootstrap Icons
+- Vue 3.5.39
+- Vite 8.1.4
+- Vue Router 5.1.0
+- Tailwind CSS 4.3.2
+- Iconify Icons
 - Montserrat (fuente)
 
 ## Instalación
