@@ -7,7 +7,7 @@
       estudios y transmisiones en un solo lugar.
     </p>
 
-    <div class="mt-8 w-md max-w-2xl space-y-3">
+    <div class="mt-8 w-md max-w-85 md:max-w-2xl space-y-3">
       <RouterLink
         v-for="route in routes"
         :key="route.path"
