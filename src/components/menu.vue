@@ -8,6 +8,7 @@
       <RouterLink
         class="text-lg font-semibold tracking-wide text-amber-400"
         to="/"
+        data-cuelume-press
       >
         Webcam Tools
       </RouterLink>
@@ -45,6 +46,7 @@
               class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:text-amber-400"
               active-class="underline 1px underline-offset-10 decoration-amber-400"
               @click="isMenuOpen = false"
+              data-cuelume-press
             >
               <component
                 v-if="item.icon"

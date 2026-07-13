@@ -87,7 +87,7 @@ import RoomTimers from '@/components/RoomTimers.vue';
 import BiStopwatch from '~icons/bi/stopwatch';
 import BiXLg from '~icons/bi/x-lg';
 
-const durationMinutes = ref(20);
+const durationMinutes = ref(0.5);
 const rooms = ref(['Room 1', 'Room 2', 'Room 3']);
 
 const durationSeconds = computed(() => Math.max(1, durationMinutes.value) * 60);
