@@ -13,6 +13,7 @@
         :key="route.path"
         :to="route.path"
         class="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-4 mt-6 text-left text-slate-100 transition hover:border-amber-400 hover:bg-slate-800"
+        data-cuelume-press
       >
         <component
           :is="route.meta.icon"
