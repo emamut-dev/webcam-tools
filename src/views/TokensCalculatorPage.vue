@@ -31,9 +31,9 @@
           </label>
           <input
             id="tokens-value"
-            v-model="modelTokens"
-            type="number"
-            min="0"
+            v-model="formattedAmount"
+            type="text"
+            inputmode="numeric"
             autocomplete="off"
             class="w-full rounded-xl border border-amber-400/60 bg-slate-950/70 px-3 py-2 text-slate-100 outline-none ring-0"
           />
@@ -111,8 +111,9 @@
             <span class="px-3 py-2 text-slate-100">$</span>
             <input
               id="dollar-value"
-              v-model="dollarValue"
-              type="number"
+              v-model="formattedDollar"
+              type="text"
+              inputmode="decimal"
               class="w-full bg-transparent px-3 py-2 text-slate-100 outline-none ring-0"
             />
           </div>
@@ -165,7 +166,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, computed, watch } from 'vue';
 import BiCalculator from '~icons/bi/calculator';
 import BiGraphUp from '~icons/bi/graph-up';
 import BiCoin from '~icons/bi/coin';
@@ -248,6 +249,49 @@ watch([modelTokens, percentage, tokenValue, dollarValue], () => {
   saveStoredData();
   calcular();
 });
+
+const createFormattedComputed = (
+  numRef,
+  { decimals = 0, locale = 'es-CO' } = {},
+) => {
+  const formatter = new Intl.NumberFormat(
+    locale,
+    decimals > 0
+      ? { minimumFractionDigits: decimals, maximumFractionDigits: decimals }
+      : {},
+  );
+
+  return computed({
+    get() {
+      return formatter.format(numRef.value);
+    },
+    set(valor) {
+      const str = valor == null ? '' : String(valor).trim();
+      if (decimals > 0) {
+        let v = str.replace(/[^0-9.,]/g, '');
+        const lastComma = v.lastIndexOf(',');
+        const lastDot = v.lastIndexOf('.');
+        const lastSep = Math.max(lastComma, lastDot);
+        if (lastSep !== -1) {
+          const integerPart = v.slice(0, lastSep).replace(/[.,]/g, '') || '0';
+          let fractionPart = v.slice(lastSep + 1).replace(/[.,]/g, '');
+          fractionPart = fractionPart.slice(0, decimals);
+          v = fractionPart ? `${integerPart}.${fractionPart}` : integerPart;
+        } else {
+          v = v.replace(/[.,]/g, '') || '0';
+        }
+        numRef.value = v === '' ? 0 : Number(v);
+      } else {
+        const limpio = str.replace(/\D/g, '') || '0';
+        numRef.value = Number(limpio);
+      }
+    },
+  });
+};
+
+const formattedAmount = createFormattedComputed(modelTokens, { decimals: 0 });
+
+const formattedDollar = createFormattedComputed(dollarValue, { decimals: 2 });
 
 const parseUSD = (num) => '$' + Number(num).toLocaleString('es-CO');
 
