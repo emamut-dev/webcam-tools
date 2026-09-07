@@ -70,15 +70,14 @@ import BiCalculator from '~icons/bi/calculator';
 const menuItems = ref([
   { label: 'Inicio', path: '/' },
   {
-    label: 'Cuenta Regresiva',
-    path: '/timer',
-    icon: BiStopwatch,
-  },
-  // { label: 'Tags', path: '/tags' },
-  {
     label: 'Calculadora de Tokens',
     path: '/tokens-calculator',
     icon: BiCalculator,
+  },
+  {
+    label: 'Cuenta Regresiva',
+    path: '/timer',
+    icon: BiStopwatch,
   },
 ]);
 
