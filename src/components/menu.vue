@@ -36,22 +36,22 @@
       <div class="w-full md:flex md:w-auto md:items-center">
         <ul
           :class="[
-            'flex flex-col gap-2 md:flex md:flex-row md:items-center md:gap-4',
-            isMenuOpen ? 'flex' : 'hidden',
+            'flex-col gap-1 md:flex md:flex-row md:items-center md:gap-2 p-2 md:p-0 rounded-2xl bg-slate-900/90 md:bg-transparent border border-slate-800 md:border-0 mt-3 md:mt-0',
+            isMenuOpen ? 'flex' : 'hidden md:flex',
           ]"
         >
           <li v-for="item in menuItems" :key="item.path">
             <RouterLink
               :to="item.path"
-              class="flex items-center rounded-md px-3 py-2 text-sm font-medium text-slate-200 transition hover:text-amber-400"
-              active-class="underline 1px underline-offset-10 decoration-amber-400"
+              class="flex items-center rounded-lg px-3 py-2 text-sm font-medium text-slate-300 transition hover:text-amber-400 hover:bg-slate-800/60 md:hover:bg-transparent"
+              active-class="text-amber-400 font-semibold bg-slate-800/80 md:bg-transparent md:border-b-2 md:border-amber-400 md:rounded-b-none"
               @click="isMenuOpen = false"
               data-cuelume-press
             >
               <component
                 v-if="item.icon"
                 :is="item.icon"
-                class="me-1 w-5 h-5"
+                class="me-1.5 w-4 h-4"
               />
               {{ item.label }}
             </RouterLink>
