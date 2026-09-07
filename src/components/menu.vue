@@ -10,7 +10,7 @@
         to="/"
         data-cuelume-press
       >
-        Webcam Tools
+        <span class="text-slate-100">Webcam</span> Tools
       </RouterLink>
 
       <button
