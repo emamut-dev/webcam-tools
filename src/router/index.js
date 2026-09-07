@@ -5,7 +5,7 @@ import Timer from '@/views/TimerPage.vue';
 import BiStopwatch from '~icons/bi/stopwatch';
 import BiCalculator from '~icons/bi/calculator';
 
-const routes = [
+export const routes = [
   { path: '/', component: HomePage, meta: { title: 'Inicio' } },
   {
     path: '/tokens-calculator',

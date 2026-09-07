@@ -49,11 +49,11 @@
               data-cuelume-press
             >
               <component
-                v-if="item.icon"
-                :is="item.icon"
+                v-if="item.meta?.icon"
+                :is="item.meta?.icon"
                 class="me-1.5 w-4 h-4"
               />
-              {{ item.label }}
+              {{ item.meta?.title }}
             </RouterLink>
           </li>
         </ul>
@@ -63,23 +63,13 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import BiStopwatch from '~icons/bi/stopwatch';
-import BiCalculator from '~icons/bi/calculator';
+import { ref, computed } from 'vue';
+import { useRouter } from 'vue-router';
 
-const menuItems = ref([
-  { label: 'Inicio', path: '/' },
-  {
-    label: 'Calculadora de Tokens',
-    path: '/tokens-calculator',
-    icon: BiCalculator,
-  },
-  {
-    label: 'Cuenta Regresiva',
-    path: '/timer',
-    icon: BiStopwatch,
-  },
-]);
+const router = useRouter();
+const menuItems = computed(() =>
+  router.options.routes.filter((route) => route.meta?.title),
+);
 
 const isMenuOpen = ref(false);
 
