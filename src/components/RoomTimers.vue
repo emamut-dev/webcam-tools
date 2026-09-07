@@ -1,89 +1,168 @@
 <template>
   <div class="space-y-4">
-    <div class="flex flex-wrap items-center gap-2">
-      <button
-        type="button"
-        class="rounded-xl bg-emerald-500 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-emerald-400 hover:cursor-pointer"
-        @click="startAll"
-      >
-        Iniciar todos
-      </button>
-      <button
-        type="button"
-        class="rounded-xl bg-amber-500 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-amber-400 hover:cursor-pointer"
-        @click="stopAll"
-      >
-        Pausar todos
-      </button>
-      <button
-        type="button"
-        class="rounded-xl border border-slate-700 px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:cursor-pointer"
-        @click="resetAll"
-      >
-        Reiniciar todos
-      </button>
+    <!-- Barra de Control Global -->
+    <div
+      class="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-800 bg-slate-900/60 p-3"
+    >
+      <div class="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          class="flex items-center gap-1.5 rounded-xl bg-emerald-500 px-3.5 py-2 text-xs font-semibold text-slate-950 transition hover:bg-emerald-400 cursor-pointer shadow-sm"
+          @click="startAll"
+        >
+          <BiPlayFill class="w-4 h-4" /> Iniciar todos
+        </button>
+        <button
+          type="button"
+          class="flex items-center gap-1.5 rounded-xl bg-amber-500 px-3.5 py-2 text-xs font-semibold text-slate-950 transition hover:bg-amber-400 cursor-pointer shadow-sm"
+          @click="stopAll"
+        >
+          <BiPauseFill class="w-4 h-4" /> Pausar todos
+        </button>
+        <button
+          type="button"
+          class="flex items-center gap-1.5 rounded-xl border border-slate-700 px-3.5 py-2 text-xs font-medium text-slate-300 transition hover:bg-slate-800 hover:text-slate-100 cursor-pointer"
+          @click="resetAll"
+        >
+          <BiArrowCounterclockwise class="w-4 h-4" /> Reiniciar todos
+        </button>
+      </div>
+
+      <span class="text-xs text-slate-400 px-1">
+        {{ activeRoomsCount }} activas / {{ roomStates.length }} total
+      </span>
     </div>
 
+    <!-- Grid de Rooms -->
     <div class="grid gap-4 md:grid-cols-2">
       <div v-for="room in roomStates" :key="room.id" class="h-full">
         <div
-          class="flex h-full flex-col rounded-3xl border border-slate-800 bg-slate-900/80 p-5 shadow-sm"
+          class="relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border bg-slate-900/80 p-5 shadow-sm transition-all duration-300"
+          :class="[
+            room.status === 'Activo'
+              ? 'border-emerald-500/40 shadow-emerald-950/20'
+              : room.status === 'Terminado'
+                ? 'border-rose-500/50 shadow-rose-950/20'
+                : 'border-slate-800',
+          ]"
         >
-          <div class="mb-4 flex items-start justify-between gap-3">
-            <div>
-              <h5 class="text-lg font-semibold text-slate-100">
-                {{ room.name }}
-              </h5>
-              <p class="mt-1 text-sm text-slate-400">
-                Duración inicial: {{ formatTime(initialDuration) }}
+          <!-- Barra superior de estado -->
+          <div
+            v-if="room.status === 'Activo'"
+            class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-400"
+          ></div>
+          <div
+            v-else-if="room.status === 'Terminado'"
+            class="absolute top-0 left-0 right-0 h-1 bg-rose-500 animate-pulse"
+          ></div>
+
+          <div>
+            <!-- Encabezado de Room -->
+            <div class="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <h5 class="text-lg font-bold text-slate-100 tracking-tight">
+                  {{ room.name }}
+                </h5>
+                <p class="mt-0.5 text-xs text-slate-400">
+                  Duración: {{ formatTime(initialDuration) }}
+                </p>
+              </div>
+
+              <!-- Badge de estado -->
+              <span
+                class="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold"
+                :class="
+                  room.status === 'Activo'
+                    ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30'
+                    : room.status === 'Terminado'
+                      ? 'bg-rose-500/15 text-rose-400 border border-rose-500/30 animate-pulse'
+                      : 'bg-slate-800 text-slate-300 border border-slate-700'
+                "
+              >
+                <span
+                  v-if="room.status === 'Activo'"
+                  class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"
+                ></span>
+                {{ room.status }}
+              </span>
+            </div>
+
+            <!-- Contador de tiempo -->
+            <div class="my-4 text-center">
+              <p
+                class="font-mono tabular-nums text-5xl font-extrabold tracking-tight transition-colors sm:text-6xl"
+                :class="
+                  room.status === 'Terminado'
+                    ? 'text-rose-400'
+                    : room.status === 'Activo'
+                      ? 'text-emerald-400'
+                      : 'text-slate-100'
+                "
+              >
+                {{ formatTime(room.remaining) }}
+              </p>
+              <p class="mt-2 text-xs font-medium uppercase tracking-wider text-slate-400">
+                {{
+                  room.remaining === 0
+                    ? '¡Tiempo terminado!'
+                    : room.running
+                      ? 'En progreso'
+                      : 'En pausa'
+                }}
               </p>
             </div>
-            <span
-              class="rounded-full px-2.5 py-1 text-xs font-semibold"
-              :class="
-                room.status === 'Activo'
-                  ? 'bg-emerald-500/20 text-emerald-400'
-                  : room.status === 'Detenido'
-                    ? 'bg-rose-500/20 text-rose-400'
-                    : 'bg-slate-700 text-slate-300'
-              "
-            >
-              {{ room.status }}
-            </span>
+
+            <!-- Barra de Progreso -->
+            <div class="mb-5 w-full bg-slate-800/80 rounded-full h-1.5 overflow-hidden">
+              <div
+                class="h-full rounded-full transition-all duration-300"
+                :class="
+                  room.status === 'Activo'
+                    ? 'bg-emerald-400'
+                    : room.remaining === 0
+                      ? 'bg-rose-500'
+                      : 'bg-slate-600'
+                "
+                :style="{
+                  width: `${Math.max(
+                    0,
+                    Math.min(
+                      100,
+                      (room.remaining / (initialDuration || 1)) * 100,
+                    ),
+                  )}%`,
+                }"
+              ></div>
+            </div>
           </div>
 
-          <div class="mb-4 text-center">
-            <p class="text-5xl font-semibold text-slate-100">
-              {{ formatTime(room.remaining) }}
-            </p>
-            <p class="mt-2 text-sm text-slate-400">
-              {{ room.remaining === 0 ? 'Terminado' : 'En curso' }}
-            </p>
-          </div>
-
-          <div class="mt-auto grid gap-2 sm:grid-cols-3">
+          <!-- Botones de Control por Room -->
+          <div class="mt-auto grid gap-2 sm:grid-cols-3 pt-3 border-t border-slate-800/60">
             <button
               type="button"
-              class="rounded-xl bg-emerald-500 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-50 hover:cursor-pointer"
+              class="flex items-center justify-center rounded-xl bg-emerald-500 py-2.5 text-slate-950 transition hover:bg-emerald-400 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer shadow-sm"
+              title="Iniciar"
               @click="startRoom(room)"
               :disabled="room.running || room.remaining === 0"
             >
-              <BiPlayFill class="mx-auto w-6 h-8" />
+              <BiPlayFill class="w-5 h-5" />
             </button>
             <button
               type="button"
-              class="rounded-xl bg-amber-500 px-3 py-2 text-sm font-medium text-slate-950 transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-50 hover:cursor-pointer"
+              class="flex items-center justify-center rounded-xl bg-amber-500 py-2.5 text-slate-950 transition hover:bg-amber-400 disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer shadow-sm"
+              title="Pausar"
               @click="stopRoom(room)"
               :disabled="!room.running"
             >
-              <BiPauseFill class="mx-auto w-6 h-8" />
+              <BiPauseFill class="w-5 h-5" />
             </button>
             <button
               type="button"
-              class="rounded-xl border border-slate-700 px-3 py-2 text-sm font-medium text-slate-300 transition hover:bg-slate-800 hover:cursor-pointer"
+              class="flex items-center justify-center rounded-xl border border-slate-700 py-2.5 text-slate-300 transition hover:bg-slate-800 hover:text-slate-100 cursor-pointer"
+              title="Reiniciar"
               @click="resetRoom(room)"
             >
-              <BiArrowCounterclockwise class="mx-auto w-6 h-6" />
+              <BiArrowCounterclockwise class="w-5 h-5" />
             </button>
           </div>
         </div>
@@ -93,7 +172,7 @@
 </template>
 
 <script setup>
-import { onBeforeUnmount, ref, watch } from 'vue';
+import { computed, onBeforeUnmount, ref, watch } from 'vue';
 
 import { play } from 'cuelume';
 
@@ -114,6 +193,10 @@ const props = defineProps({
 
 const roomStates = ref([]);
 const initialDuration = ref(props.durationSeconds);
+
+const activeRoomsCount = computed(
+  () => roomStates.value.filter((r) => r.running).length,
+);
 
 const STORAGE_KEY = 'webcam-tools.timerConfig';
 
@@ -179,7 +262,6 @@ const tickRoom = (room) => {
     stopRoom(room);
     if (!room._notified) {
       play('sparkle');
-
       room._notified = true;
     }
   }

@@ -11,7 +11,3 @@
 .big-text {
   font-size: 4rem;
 }
-
-.nav-underline .nav-link.active {
-  border-bottom-color: var(--bs-warning);
-}
