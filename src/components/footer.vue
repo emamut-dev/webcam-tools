@@ -15,10 +15,10 @@
         Powered by
         <a
           class="text-amber-400"
-          href="https://emamut.netlify.app/"
+          href="https://emamut.com.co/"
           target="_blank"
         >
-          <img src="../assets/logo-emamut-mini.png" alt="emamut" class="w-24" />
+          <img src="../assets/logo-emamut-mini.png" alt="emamut" class="w-20" />
         </a>
       </p>
     </div>
